@@ -1,0 +1,64 @@
+
+services:
+  # 1. Python 머신러닝 FastAPI 서버
+  ml-server:
+    build: 
+      context: ./ml_pipeline
+      dockerfile: Dockerfile
+    container_name: port_ml_server
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - port-network
+
+  # 2. Node.js 백엔드 및 WebSocket 서버
+  backend-server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: port_backend_server
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://admin:adminpassword@mongo:27017/port_logistics?authSource=admin
+      - FASTAPI_URL=http://ml-server:8000/api/predict/wait-time
+    depends_on:
+      - mongo
+      - ml-server
+    restart: unless-stopped
+    networks:
+      - port-network
+
+  # 3. React 프론트엔드 (Nginx 서빙 및 프록시)
+  frontend-server:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: port_frontend_server
+    ports:
+      - "8080:80"
+    depends_on:
+      - ml-server
+      - backend-server
+    restart: unless-stopped
+    networks:
+      - port-network
+
+  # 4. MongoDB Database
+  mongo:
+    image: mongo:latest
+    container_name: port_mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+      MONGO_INITDB_DATABASE: port_logistics
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+    networks:
+      - port-network
+
+networks:
+  port-network:
+    driver: bridge

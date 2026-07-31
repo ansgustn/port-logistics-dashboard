@@ -1,0 +1,17 @@
+{
+  "short_name": "항만물류PWA",
+  "name": "스마트 항만 물류 기사용 내비게이션 PWA",
+  "description": "실시간 항만 혼잡도 예측 및 기사용 최적 경로 가이던스 PWA",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#020617",
+  "theme_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,0 +1,71 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+jspm_packages/
+web_modules/
+
+# Python / ML
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Build & Output directories
+dist/
+build/
+out/
+.next/
+*.apk
+*.ipa
+
+# Environment and sensitive data
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDEs & System files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Unity build artifacts & temp
+[Aa]sset[Ss]erver/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ibrary/
+[Ll]ocal[Ss]etting*/
+[Mm]emoryCaptures/
+[Oo]bj/
+[Tt]emp/
+[Uu]ser[Ss]ettings/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Xcode / iOS
+DerivedData/
+*.dSYM/
+*.xcuserdata
